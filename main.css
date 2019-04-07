@@ -3,9 +3,10 @@ body {
     padding: 0%;
 }
 
-div#main {
+div#wrapper {
     margin-left: 15%;
     margin-right: 15%;
+    padding: 0 2px 2px;
     background-color: white;
 }
 
