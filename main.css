@@ -1,3 +1,25 @@
+body {
+    background-color: #f8f8f8;
+    padding: 0%;
+}
+
+div#main {
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: white;
+}
+
+div #content {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+/* Banner CSS */
+div#banner {
+    padding-bottom: 2%;
+    border: 1px solid #d0d0d0;
+}
+
 #banner h1 {
     text-align: center;
 }
@@ -5,4 +27,20 @@
 #banner table {
     margin: auto;
     text-align: center;
+}
+
+#banner a {
+    text-decoration: none;
+}
+
+#banner a:link {
+    color: black;
+}
+
+#banner a:visited {
+    color: black;
+}
+
+#banner a:hover {
+    color: #555555;
 }
