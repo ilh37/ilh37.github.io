@@ -1,0 +1,12 @@
+#banner h1 {
+    text-align: center;
+}
+
+#banner table {
+    margin: auto;
+    text-align: center;
+}
+
+#banner td {
+    width: 16%;
+}
