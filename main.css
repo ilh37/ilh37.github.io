@@ -1,3 +1,6 @@
+/* Google Open Sans font */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 body {
     background-color: #f8f8f8;
     padding: 0%;
@@ -8,6 +11,7 @@ div#wrapper {
     margin-right: 15%;
     padding: 0 2px 2px;
     background-color: white;
+    font-family: "Open Sans";
 }
 
 div #content {
@@ -23,6 +27,7 @@ div#banner {
 
 #banner h1 {
     text-align: center;
+    font-family: "Courier New";
 }
 
 #banner table {
