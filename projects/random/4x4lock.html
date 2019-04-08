@@ -1,0 +1,35 @@
+---
+title: 4x4 Lock Puzzle - Ivan's site
+layout: project
+---
+
+<style>
+  #game {
+  text-align: center;
+  margin: 0 auto;
+  }
+  
+  #board {
+  text-align: center;
+  }
+  
+  #board button {
+  font-family: "Inconsolata";
+  }
+  
+  .win {
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
+  }
+</style>
+<p>Remove all the Xs on the lock to win. Clicking each button switches the state of all buttons in the same row and column.</p>
+<div id="game">
+  <div id="board">
+  </div>
+  
+  <p class="win">Congratulations! You have won!</p>
+  <button onclick="reset()" class="win">Try again</button>
+</div>
+
+<script src="4x4lock.js"></script>
