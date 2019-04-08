@@ -12,3 +12,4 @@ filler
 <h3>Puzzles</h3>
 
 * [4x4 Lock](random/4x4lock.html): Remove all the Xs from a 4x4 grid.
+* [Infinite Grid Problem](random/gridproblem.html): Try to remove all the markers from the underlined spaces.
