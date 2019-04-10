@@ -1,0 +1,9 @@
+#content blockquote {
+    text-indent: 2em;
+    background-color: #f0f0f0;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 10px 20px 10px 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+}

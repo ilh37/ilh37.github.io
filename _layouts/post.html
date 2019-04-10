@@ -1,11 +1,15 @@
 ---
 layout: default
 ---
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+   <link rel="stylesheet" href="{{ site.url }}/blog.css">
+
 <div style="margin-top: 1%">
   <a href="{{ site.url }}/blog.html">&lt; Back to Blog</a>
 </div>
 
 <h1>{{ page.title }}</h1>
-<p><i>{{ page.date | date_to_string }} - {{ page.author }}</i></p>
+<p><i>{{ page.date | date_to_string }}</i></p>
 
 {{ content }}
