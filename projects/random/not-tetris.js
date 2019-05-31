@@ -122,7 +122,6 @@ function gameLoop() {
 function newPiece() {
     tetros = [tetrominoes.I, tetrominoes.O, tetrominoes.J, tetrominoes.L,
               tetrominoes.S, tetrominoes.Z, tetrominoes.T]
-    tetros = [tetrominoes.L]
     selection = tetros[Math.floor(Math.random()*tetros.length)];
     piece = {location: selection.start, config: 0, type: selection}
     return piece
