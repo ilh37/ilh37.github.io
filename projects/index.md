@@ -11,7 +11,7 @@ filler
 
 * <a href="https://ilh37.github.io/cubespace/cubespace.html" target="_blank">Cubespace</a>: A 3D version of the game Cubefield written with THREE.js. Use the arrow keys to navigate.
     * [Source](https://github.com/ilh37/cubespace/blob/master/cubespace.js)
-* <a href="not-tetris.html">Tetris Clone</a>: A clone of the game Tetris created using HTML5 and Javascript.
+* <a href="random/not-tetris.html">Tetris Clone</a>: A clone of the game Tetris created using HTML5 and Javascript.
     
 <h3>Puzzles</h3>
 
