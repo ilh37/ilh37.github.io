@@ -15,6 +15,9 @@ var currentPiece
 // Tetromino definitions
 var tetrominos 
 
+// Instance of game loop
+var loop
+
 function init() {
     // Tetromino definitions
     tetrominoes = {
@@ -68,18 +71,23 @@ function init() {
 
     // Initialize current piece
     currentPiece = newPiece()
+
+    isNewPiece = false
+    gameOver = false
+    score = 0
     
-    setInterval(gameLoop,500)
+    loop = setInterval(gameLoop,500)
 }
 
 // Logic functions
 var isNewPiece = false
 var gameOver = false
+var score = 0
 function gameLoop() {
     drawBoard()
     
     if(gameOver) {
-        
+        clearInterval(loop)
     }
     else {
         clearRows()
@@ -102,6 +110,8 @@ function gameLoop() {
             }
         }
     }
+
+    drawBoard()
 }
 
 function newPiece() {
@@ -151,6 +161,8 @@ function clearRows() {
     }
     for(i = 0; i < rows.length; i++)
         clearRow(rows[i])
+
+    updateScore(rows.length)
 }
 
 function clearRow(row) {
@@ -179,6 +191,19 @@ function clearRow(row) {
     prevPieces = newPrevPieces
 }
 
+function updateScore(rows) {
+    if(rows == 1)
+        score += 40
+    else if(rows == 2)
+        score += 100
+    else if(rows == 3)
+        score += 300
+    else if(rows >= 4)
+        score += 1200
+    
+    document.getElementById("score").innerHTML = "<p>Score: " + score + "</p>"
+}
+
 // Control functions
 document.addEventListener('keydown', function(event) {
     if(event.code == "ArrowLeft")
@@ -187,12 +212,13 @@ document.addEventListener('keydown', function(event) {
         go([1,0])
     else if(event.code == "ArrowDown")
         go([0,1])
-    else if(event.code == "ArrowUp")
-        rotateC()
     else if(event.code == "KeyZ")
         rotateC()
     else if(event.code == "KeyX")
-        rotateCC()
+        rotateC()
+    else if(event.code == "Space")
+        if(gameOver)
+            init()
 });
 
 function go(delta) {
@@ -244,6 +270,21 @@ function drawBoard() {
     // Draw border
     boardCtx.strokeStyle = "black"
     boardCtx.strokeRect(0, 0,  WIDTH * COLUMNS, WIDTH * ROWS)
+
+    // Game over message
+    if(gameOver) {
+        boardCtx.fillStyle = "white"
+        boardCtx.textAlign = "center"; 
+        boardCtx.font = "35px Arial"
+        boardCtx.fillText("Game Over!", 100, 200)
+        boardCtx.fillStyle = "black"
+        boardCtx.font = "bold 15px Arial"
+        boardCtx.fillText("Press space to restart", 100, 230)
+
+        boardCtx.strokeStyle = "black"
+        boardCtx.font = "35px Arial"
+        boardCtx.strokeText("Game Over!", 100, 200)
+    }
 }
 
 function fillTile(x, y, width, color) {
