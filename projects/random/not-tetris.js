@@ -220,7 +220,7 @@ document.addEventListener('keydown', function(event) {
     else if(event.code == "KeyZ")
         rotateC()
     else if(event.code == "KeyX")
-        rotateC()
+        rotateCC()
     else if(event.code == "Space")
         if(gameOver)
             init()
