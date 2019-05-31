@@ -11,6 +11,7 @@ var prevPieces
 
 // Current piece information (refer to tetrominoes for interpretation)
 var currentPiece
+var nextPiece
 
 // Tetromino definitions
 var tetrominos 
@@ -71,10 +72,12 @@ function init() {
 
     // Initialize current piece
     currentPiece = newPiece()
+    nextPiece = newPiece()
 
     isNewPiece = false
     gameOver = false
     score = 0
+    updateScore(0)
     
     loop = setInterval(gameLoop,500)
 }
@@ -101,7 +104,8 @@ function gameLoop() {
             }
         }
         else {
-            currentPiece = newPiece()
+            currentPiece = nextPiece
+            nextPiece = newPiece()
             if(validPos(currentPiece)) {
                 isNewPiece = false
             }
@@ -113,6 +117,7 @@ function gameLoop() {
 
     drawBoard()
 }
+
 
 function newPiece() {
     tetros = [tetrominoes.I, tetrominoes.O, tetrominoes.J, tetrominoes.L,
@@ -250,12 +255,13 @@ function rotateCC() {
 function drawBoard() {
     // Clear canvas and draw border
     boardCtx.clearRect(0, 0, WIDTH * COLUMNS, WIDTH * ROWS)
+    nextCtx.clearRect(0, 0, 4 * WIDTH, 2 * WIDTH)
     
     // Draw dead pieces
     for(x = 0; x < COLUMNS; x++) {
         for(y = 0; y < ROWS; y++) {
             if(prevPieces[x][y])
-                fillTile(x, y, WIDTH, prevPieces[x][y])
+                fillTile(x, y, WIDTH, prevPieces[x][y], boardCtx)
         }
     }
 
@@ -263,7 +269,7 @@ function drawBoard() {
     if(!gameOver) {
         for(i = 0; i < currentPiece.type.configs[currentPiece.config].length; i++) {
             newPt = addPt(currentPiece.location, currentPiece.type.configs[currentPiece.config][i])
-            fillTile(newPt[0], newPt[1], WIDTH, currentPiece.type.color)
+            fillTile(newPt[0], newPt[1], WIDTH, currentPiece.type.color, boardCtx)
         }
     }
 
@@ -285,12 +291,41 @@ function drawBoard() {
         boardCtx.font = "35px Arial"
         boardCtx.strokeText("Game Over!", 100, 200)
     }
+
+    // Draw next piece
+    nextLoc = [0,0]
+    switch(nextPiece.type) {
+    case tetrominoes.I:
+        nextLoc = [1,0]
+        break
+    case tetrominoes.O:
+        nextLoc = [1,0]
+        break
+    case tetrominoes.J:
+        nextLoc = [1,0]
+        break
+    case tetrominoes.L:
+        nextLoc = [1,0]
+        break
+    case tetrominoes.S:
+        nextLoc = [1,0]
+        break
+    case tetrominoes.Z:
+        nextLoc = [1,0]
+        break
+    case tetrominoes.T:
+        nextLoc = [1,0]
+    }
+    for(i = 0; i < nextPiece.type.configs[nextPiece.config].length; i++) {
+        newPt = addPt(nextLoc, nextPiece.type.configs[nextPiece.config][i])
+        fillTile(newPt[0], newPt[1], WIDTH, nextPiece.type.color, nextCtx)
+    }
 }
 
-function fillTile(x, y, width, color) {
-    boardCtx.fillStyle = color
-    boardCtx.fillRect(width * x, width * y, width, width)
+function fillTile(x, y, width, color, ctx) {
+    ctx.fillStyle = color
+    ctx.fillRect(width * x, width * y, width, width)
 
-    boardCtx.strokeStyle = "white"
-    boardCtx.strokeRect(width * x, width * y, width, width)
+    ctx.strokeStyle = "white"
+    ctx.strokeRect(width * x, width * y, width, width)
 }

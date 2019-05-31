@@ -1,31 +1,46 @@
 ---
-title: Tetris Clone - Ivan's site
-layout: null
+title: Tetris Javascript Clone - Ivan's site
+layout: project
 ---
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <script src="not-tetris.js">
-    </script>
-  </head>
-  <body>
-    <div id="main">      
-      <div id="board">
-        <canvas id="boardCanvas" height="400px" width="200px"></canvas>
-      </div>
-      <div id="sidebar">
-        <div id="score">
-          <p>Score: 0</p>
-        </div>
+<style>
+  div#main {
+  overflow: auto;
+  width: 325px;
+  margin: 0 auto;
+  }
 
-        <div id="next">
-          <p>Next:</p>
-          <canvas id="nextCanvas"></canvas>
-        </div>
-      </div>
+  div#board {
+  margin-left: auto;
+  float: left;
+  }
+  
+  div#sidebar {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 3px;
+  float: right;
+  }
+</style>
+
+<h2>Tetris Javascript Clone</h2>
+
+<script src="not-tetris.js">
+</script>
+
+<div id="main">      
+  <div id="board">
+    <canvas id="boardCanvas" height="400px" width="200px"></canvas>
+  </div>
+  <div id="sidebar">
+    <div id="score">
+      <p>Score: 0</p>
     </div>
+    
+    <div id="next">
+      <p>Next:</p>
+      <canvas id="nextCanvas" height="40px" width="80px"></canvas>
+    </div>
+  </div>
+</div>
 
-    <script>init()</script>
-  </body>
-</html>
+<script>init()</script>
