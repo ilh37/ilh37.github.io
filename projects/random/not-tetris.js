@@ -82,13 +82,13 @@ function gameLoop() {
         
     }
     else {
+        clearRows()
         if(!isNewPiece) {
             if(validPos(nextPos(currentPiece))) {
                 currentPiece = nextPos(currentPiece)
             }
             else {
                 destroyCurrent()
-                clearRows()
                 isNewPiece = true
             }
         }
@@ -188,7 +188,11 @@ document.addEventListener('keydown', function(event) {
     else if(event.code == "ArrowDown")
         go([0,1])
     else if(event.code == "ArrowUp")
-        rotate()
+        rotateC()
+    else if(event.code == "KeyZ")
+        rotateC()
+    else if(event.code == "KeyX")
+        rotateCC()
 });
 
 function go(delta) {
@@ -198,9 +202,18 @@ function go(delta) {
     drawBoard()
 }
 
-function rotate() {
+function rotateC() {
     next = {location: currentPiece.location,
             config: (currentPiece.config + 1) % currentPiece.type.configs.length,
+            type: currentPiece.type}
+    if(validPos(next))
+        currentPiece = next
+    drawBoard()
+}
+
+function rotateCC() {
+    next = {location: currentPiece.location,
+            config: (currentPiece.config - 1) % currentPiece.type.configs.length,
             type: currentPiece.type}
     if(validPos(next))
         currentPiece = next
