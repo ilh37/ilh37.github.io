@@ -16,8 +16,9 @@ var nextPiece
 // Tetromino definitions
 var tetrominos 
 
-// Instance of game loop
+// Instance of game loop/graphics loop
 var loop
+var drawLoop
 
 function init() {
     // Tetromino definitions
@@ -80,6 +81,7 @@ function init() {
     updateScore(0)
     
     loop = setInterval(gameLoop,500)
+    drawLoop = setInterval(drawBoard, 17) // ~60 FPS
 }
 
 // Logic functions
@@ -87,8 +89,6 @@ var isNewPiece = false
 var gameOver = false
 var score = 0
 function gameLoop() {
-    drawBoard()
-    
     if(gameOver) {
         clearInterval(loop)
     }
@@ -114,8 +114,6 @@ function gameLoop() {
             }
         }
     }
-
-    drawBoard()
 }
 
 
@@ -217,9 +215,9 @@ document.addEventListener('keydown', function(event) {
         go([1,0])
     else if(event.code == "ArrowDown")
         go([0,1])
-    else if(event.code == "KeyZ")
-        rotateC()
     else if(event.code == "KeyX")
+        rotateC()
+    else if(event.code == "KeyZ")
         rotateCC()
     else if(event.code == "Space")
         if(gameOver)
@@ -230,7 +228,6 @@ function go(delta) {
     next = {location: addPt(currentPiece.location,delta), config: currentPiece.config, type: currentPiece.type}
     if(validPos(next))
         currentPiece = next
-    drawBoard()
 }
 
 function rotateC() {
@@ -239,16 +236,15 @@ function rotateC() {
             type: currentPiece.type}
     if(validPos(next))
         currentPiece = next
-    drawBoard()
 }
 
 function rotateCC() {
+    n = currentPiece.type.configs.length
     next = {location: currentPiece.location,
-            config: (currentPiece.config - 1) % currentPiece.type.configs.length,
+            config: (((currentPiece.config - 1) % n) + n) % n,
             type: currentPiece.type}
     if(validPos(next))
         currentPiece = next
-    drawBoard()
 }
 
 // UI functions
