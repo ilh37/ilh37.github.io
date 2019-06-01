@@ -86,6 +86,7 @@ function init() {
     isNewPiece = false
     gameOver = false
     score = 0
+    level = 
     updateScore(0)
 
     prevTime = Date.now()
