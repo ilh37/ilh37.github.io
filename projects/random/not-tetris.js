@@ -43,7 +43,7 @@ function init() {
                       [[-1,-1],[-1,0],[0,0],[1,0]],
                       [[1,-1],[0,-1],[0,0],[0,1]]],
             start: [Math.floor(COLUMNS/2), 0],
-            color: "yellow"},
+            color: "gold"},
         L: {configs: [[[-1,1],[-1,0],[0,0],[1,0]],
                       [[-1,-1],[0,-1],[0,0],[0,1]],
                       [[1,-1],[1,0],[0,0],[-1,0]],
@@ -87,6 +87,9 @@ function init() {
     gameOver = false
     score = 0
     updateScore(0)
+
+    prevTime = Date.now()
+    accumulatedTime = 0
     
     loop = setInterval(gameLoop,1)
     drawLoop = setInterval(drawBoard, 17) // ~60 FPS
@@ -221,7 +224,7 @@ function updateScore(rows) {
     else if(rows == 3)
         score += 300 + 150 * level
     else if(rows >= 4)
-        score += 1200 + 600 * level
+        score += 1200 + 1200 * level
 
     totalRows += rows
     level = Math.floor(totalRows / 10) + 1
@@ -303,7 +306,7 @@ function drawBoard() {
         boardCtx.font = "35px Arial"
         boardCtx.fillText("Game Over!", 100, 200)
         boardCtx.fillStyle = "black"
-        boardCtx.font = "bold 15px Arial"
+        boardCtx.font = "bold 18px Arial"
         boardCtx.fillText("Press space to restart", 100, 230)
 
         boardCtx.strokeStyle = "black"
