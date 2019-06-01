@@ -108,7 +108,7 @@ function gameLoop() {
 }
 
 function tickThreshold() {
-    return 17 + Math.floor(483.0 / Math.pow(1+0.25*level, 1.5))
+    return 17 + Math.floor(483.0 / Math.pow(1+0.4*level, 1.2))
 }
     
 function tick() {
@@ -218,13 +218,13 @@ function clearRow(row) {
 
 function updateScore(rows) {
     if(rows == 1)
-        score += 40 + 20 * level
+        score += 20 + 20 * level
     else if(rows == 2)
-        score += 100 + 50 * level
+        score += 50 + 50 * level
     else if(rows == 3)
-        score += 300 + 150 * level
+        score += 100 + 200 * level
     else if(rows >= 4)
-        score += 1200 + 1200 * level
+        score += 1200 * level
 
     totalRows += rows
     level = Math.floor(totalRows / 10) + 1
