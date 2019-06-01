@@ -87,6 +87,7 @@ function init() {
     gameOver = false
     score = 0
     level = 1
+    rows = 0
     updateScore(0)
 
     prevTime = Date.now()
