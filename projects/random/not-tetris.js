@@ -20,6 +20,14 @@ var tetrominos
 var loop
 var drawLoop
 
+var isNewPiece = false
+var gameOver = false
+var score = 0
+var totalRows = 0
+var prevTime = Date.now()
+var accumulatedTime = 0
+var level = 1
+
 function init() {
     // Tetromino definitions
     tetrominoes = {
@@ -80,15 +88,27 @@ function init() {
     score = 0
     updateScore(0)
     
-    loop = setInterval(gameLoop,500)
+    loop = setInterval(gameLoop,1)
     drawLoop = setInterval(drawBoard, 17) // ~60 FPS
 }
 
 // Logic functions
-var isNewPiece = false
-var gameOver = false
-var score = 0
 function gameLoop() {
+    t = Date.now()
+    accumulatedTime += t - prevTime
+    prevTime = t
+
+    if(accumulatedTime >= tickThreshold()) {
+        tick()
+        accumulatedTime -= tickThreshold()
+    }   
+}
+
+function tickThreshold() {
+    return 17 + Math.floor(483.0 / Math.pow(1+0.25*level, 1.5))
+}
+    
+function tick() {
     if(gameOver) {
         clearInterval(loop)
     }
@@ -113,9 +133,8 @@ function gameLoop() {
                 gameOver = true
             }
         }
-    }
+    }  
 }
-
 
 function newPiece() {
     tetros = [tetrominoes.I, tetrominoes.O, tetrominoes.J, tetrominoes.L,
@@ -203,8 +222,12 @@ function updateScore(rows) {
         score += 300
     else if(rows >= 4)
         score += 1200
+
+    totalRows += rows
+    level = Math.floor(totalRows / 10) + 1
     
     document.getElementById("score").innerHTML = "<p>Score: " + score + "</p>"
+    document.getElementById("level").innerHTML = "<p><b>Level: " + level + "</b></p>"
 }
 
 // Control functions
@@ -251,7 +274,7 @@ function rotateCC() {
 function drawBoard() {
     // Clear canvas and draw border
     boardCtx.clearRect(0, 0, WIDTH * COLUMNS, WIDTH * ROWS)
-    nextCtx.clearRect(0, 0, 4 * WIDTH, 2 * WIDTH)
+    nextCtx.clearRect(0, 0, 100, 40)
     
     // Draw dead pieces
     for(x = 0; x < COLUMNS; x++) {
@@ -289,29 +312,13 @@ function drawBoard() {
     }
 
     // Draw next piece
-    nextLoc = [0,0]
+    nextLoc = [2,0]
     switch(nextPiece.type) {
     case tetrominoes.I:
-        nextLoc = [1,0]
-        break
     case tetrominoes.O:
         nextLoc = [1,0]
-        break
-    case tetrominoes.J:
-        nextLoc = [1,0]
-        break
-    case tetrominoes.L:
-        nextLoc = [1,0]
-        break
-    case tetrominoes.S:
-        nextLoc = [1,0]
-        break
-    case tetrominoes.Z:
-        nextLoc = [1,0]
-        break
-    case tetrominoes.T:
-        nextLoc = [1,0]
     }
+    
     for(i = 0; i < nextPiece.type.configs[nextPiece.config].length; i++) {
         newPt = addPt(nextLoc, nextPiece.type.configs[nextPiece.config][i])
         fillTile(newPt[0], newPt[1], WIDTH, nextPiece.type.color, nextCtx)
