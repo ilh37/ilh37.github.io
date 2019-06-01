@@ -31,8 +31,8 @@ var level = 1
 function init() {
     // Tetromino definitions
     tetrominoes = {
-        I: {configs: [[[-1,0],[0,0],[1,0],[2,0]],
-                      [[0,-1],[0,0],[0,1],[0,2]]],
+        I: {configs: [[[-2,0],[-1,0],[0,0],[1,0]],
+                      [[0,-2],[0,-1],[0,0],[0,1]]],
             start: [Math.floor((COLUMNS-1)/2),0],
             color: "red" },
         O: {configs: [[[0,0],[1,0],[0,1],[1,1]]],
@@ -319,6 +319,8 @@ function drawBoard() {
     nextLoc = [2,0]
     switch(nextPiece.type) {
     case tetrominoes.I:
+        nextLoc = [3,0]
+        break
     case tetrominoes.O:
         nextLoc = [1,0]
         break
