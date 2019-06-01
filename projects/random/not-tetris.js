@@ -215,13 +215,13 @@ function clearRow(row) {
 
 function updateScore(rows) {
     if(rows == 1)
-        score += 40
+        score += 40 + 20 * level
     else if(rows == 2)
-        score += 100
+        score += 100 + 50 * level
     else if(rows == 3)
-        score += 300
+        score += 300 + 150 * level
     else if(rows >= 4)
-        score += 1200
+        score += 1200 + 600 * level
 
     totalRows += rows
     level = Math.floor(totalRows / 10) + 1
