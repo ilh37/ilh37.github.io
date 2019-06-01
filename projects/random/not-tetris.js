@@ -56,7 +56,7 @@ function init() {
             color: "blue"},
         Z: {configs: [[[-1,-1],[0,-1],[0,0],[1,0]],
                       [[1,-1],[1,0],[0,0],[0,1]]],
-            start: [Math.floor(COLUMNS/2), 0],
+            start: [Math.floor(COLUMNS/2), 1],
             color: "purple"},
         T: {configs: [[[-1,0],[0,0],[1,0],[0,1]],
                       [[0,-1],[0,0],[0,1],[-1,0]],
@@ -321,6 +321,9 @@ function drawBoard() {
     case tetrominoes.I:
     case tetrominoes.O:
         nextLoc = [1,0]
+        break
+    case tetrominoes.Z:
+        nextLoc = [2,1]
     }
     
     for(i = 0; i < nextPiece.type.configs[nextPiece.config].length; i++) {
