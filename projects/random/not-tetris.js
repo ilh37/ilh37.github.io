@@ -33,7 +33,7 @@ function init() {
     tetrominoes = {
         I: {configs: [[[-2,0],[-1,0],[0,0],[1,0]],
                       [[0,-2],[0,-1],[0,0],[0,1]]],
-            start: [Math.floor((COLUMNS-1)/2),0],
+            start: [Math.floor(COLUMNS/2),0],
             color: "red" },
         O: {configs: [[[0,0],[1,0],[0,1],[1,1]]],
             start: [Math.floor((COLUMNS-1)/2),0],
