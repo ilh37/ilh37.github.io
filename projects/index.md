@@ -2,10 +2,6 @@
 title: Projects - Ivan's site
 layout: default
 ---
-
-<h2>Math</h2>
-
-filler
     
 <h2>Random and Pointless</h2>
 
